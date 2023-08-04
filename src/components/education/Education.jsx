@@ -1,9 +1,25 @@
 import React from 'react'
 
-const Education = () => {
+const EducationInfo = ({ info }) => {
+  const { schoolName, degree, location, startDate, endDate } = info;
+
   return (
-    <div>Education</div>
+   <div className="education-info">
+      <div className="education-info-group">
+        <p className="dates">
+          {startDate}
+          {startDate && endDate && <span> – </span>}
+          {endDate}
+        </p>
+        <p>{location}</p>
+      </div>
+
+      <div className="education-info-group">
+        <p className="education-info-schoolName">{schoolName}</p>
+        <p className="education-info-degree">{degree}</p>
+      </div>
+    </div>
   )
 }
 
-export default Education
+export default EducationInfo;

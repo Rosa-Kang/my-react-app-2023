@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import uniqid from 'uniqid';
 
-import './App.css';
+import './styles/App.css';
 import Sidebar from './components/Sidebar';
 import exampleData from './example-data';
 import TemplateLoader from './components/TemplateLoader';

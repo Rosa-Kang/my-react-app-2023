@@ -1,4 +1,7 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
+
+import '../styles/Sidebar.css'
 
 const Sidebar = ({onGoPage, page}) => {
   return (
@@ -7,7 +10,7 @@ const Sidebar = ({onGoPage, page}) => {
         onClick={() => onGoPage('content')}
         data-selected={page === 'content'}
       >
-      <i className='fa-regular fa-file-lines' />
+      <FontAwesomeIcon icon="fa-solid fa-file-lines" />
       Content
       </button>
 
@@ -15,7 +18,7 @@ const Sidebar = ({onGoPage, page}) => {
         onClick={() => onGoPage('customize')}
         data-selected={page === 'customize'}
       >
-        <i className='=fa-solid fa-pen-ruler' />
+        <FontAwesomeIcon icon="fa-solid fa-pen-ruler" />
         Customize
       </button>
     </div>
