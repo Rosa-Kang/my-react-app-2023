@@ -1,7 +1,8 @@
 import React from 'react'
 import DisplaySection from '../DisplaySection'
+import EducationInfo from './EducationInfo'
 
-const EducationInfoSection = ({education}) => {
+const EducationInfoSection = ({educations}) => {
   return (
     <div className="education-info-section resume-section">
       <DisplaySection
