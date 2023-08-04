@@ -5,6 +5,7 @@ import '../../styles/Section.css'
 import ExpandSection from '../ExpandSection'
 import DisplayForms from '../DisplayForms'
 import CreateForm from '../CreateForm'
+import EducationForm from './EducationForm';
 
 const AddEducationSection = ({
    educations,

@@ -4,8 +4,8 @@ const exampleData = {
     personalInfo: {
         fullName: "Rosa Kang",
         email: "therosessom@gmail.com",
-        phoneNumber: '+1 888 8888',
-        address: 'London UK'
+        phoneNumber: '+1 604 910- 3337',
+        address: 'Langely BC, Canada'
     },
 
     sections: {
