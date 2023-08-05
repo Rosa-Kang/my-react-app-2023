@@ -1,8 +1,7 @@
-import React from 'react'
-import DisplaySection from '../DisplaySection'
-import EducationInfo from './EducationInfo'
+import EducationInfo from "./EducationInfo";
+import DisplaySection from "../DisplaySection";
 
-const EducationInfoSection = ({educations}) => {
+function EducationInfoSection({ educations }) {
   return (
     <div className="education-info-section resume-section">
       <DisplaySection
@@ -14,4 +13,4 @@ const EducationInfoSection = ({educations}) => {
   );
 }
 
-export default EducationInfoSection
+export default EducationInfoSection;

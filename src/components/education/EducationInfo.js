@@ -1,10 +1,9 @@
-import React from 'react'
+import "../../styles/EducationInfo.css";
 
-const EducationInfo = ({ info }) => {
+function EducationInfo({ info }) {
   const { schoolName, degree, location, startDate, endDate } = info;
-
   return (
-   <div className="education-info">
+    <div className="education-info">
       <div className="education-info-group">
         <p className="dates">
           {startDate}
@@ -19,7 +18,7 @@ const EducationInfo = ({ info }) => {
         <p className="education-info-degree">{degree}</p>
       </div>
     </div>
-  )
+  );
 }
 
 export default EducationInfo;

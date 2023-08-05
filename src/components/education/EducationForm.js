@@ -1,28 +1,27 @@
-import React from 'react';
-import Input from '../Input';
-import Buttons from '../Buttons';
+import InputGroup from "../InputGroup";
+import Buttons from "../Buttons";
 
-const EducationForm = (props) => {
+function EducationForm(props) {
   const { degree, schoolName, location, startDate, endDate, id } = props.form;
   const { onChange, cancel, save, remove } = props;
 
   return (
     <form
-      className='education-form section-form'
+      className="education-form section-form"
       id={id}
-      data-array-name='educations'
-      onSubmit={(e)=> e.preventDafault()}
+      data-array-name="educations"
+      onSubmit={(e) => e.preventDefault()}
     >
-      <Input
-        type='text'
-        id='school-name'
-        labelText='School'
-        placeholder='Enter school / university'
+      <InputGroup
+        type="text"
+        id="school-name"
+        labelText="School"
+        placeholder="Enter school / university"
         value={schoolName}
         onChange={onChange}
-        data-key='school-name'
+        data-key="schoolName"
       />
-      <Input
+      <InputGroup
         type="text"
         id="degree"
         labelText="Degree"
@@ -32,7 +31,7 @@ const EducationForm = (props) => {
         data-key="degree"
       />
       <div className="dates-group">
-        <Input
+        <InputGroup
           type="text"
           id="date"
           labelText="Start Date"
@@ -41,7 +40,7 @@ const EducationForm = (props) => {
           onChange={onChange}
           data-key="startDate"
         />
-        <Input
+        <InputGroup
           type="text"
           id="date"
           labelText="End Date"
@@ -51,7 +50,7 @@ const EducationForm = (props) => {
           data-key="endDate"
         />
       </div>
-      <Input
+      <InputGroup
         type="text"
         id="location"
         labelText="Location"
@@ -64,7 +63,7 @@ const EducationForm = (props) => {
 
       <Buttons save={save} cancel={cancel} remove={remove} />
     </form>
-  )
+  );
 }
 
-export default EducationForm
+export default EducationForm;

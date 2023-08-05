@@ -1,22 +1,22 @@
-import React from 'react'
-import ExpandSection from '../ExpandSection'
-import DisplayForms from '../DisplayForms'
-import CreateForm from '../CreateForm'
-import ExperienceForm from './ExperienceForm'
+import ExpandSection from "../ExpandSection";
+import CreateForm from "../CreateForm";
+import "../../styles/Section.css";
+import DisplayForms from "../DisplayForms";
+import ExperienceForm from "./ExperienceForm";
 
-const AddExperienceSection = ({
-                experiences,
-                isOpen,
-                onChange,
-                createForm,
-                setOpen,
-                onCancel,
-                toggleCollapsed,
-                onHide,
-                onRemove,
-}) => {
+function AddExperienceSection({
+  isOpen,
+  createForm,
+  setOpen,
+  experiences,
+  onChange,
+  onCancel,
+  toggleCollapsed,
+  onHide,
+  onRemove,
+}) {
   return (
-     <div className="add-experience-section section">
+    <div className="add-experience-section section">
       <ExpandSection
         isOpen={isOpen}
         setOpen={setOpen}
@@ -40,7 +40,7 @@ const AddExperienceSection = ({
         <CreateForm onClick={createForm} buttonText="Experience" />
       </div>
     </div>
-  )
+  );
 }
 
-export default AddExperienceSection
+export default AddExperienceSection;

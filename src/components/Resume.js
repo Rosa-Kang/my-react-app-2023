@@ -1,12 +1,12 @@
-import React from 'react'
-import PersonalInfoSection from './personal/PersonalInfoSection'
-import EducationInfoSection from './education/EducationInfoSection'
-import ExperienceInfoSection from './experience/ExperienceInfoSection'
+import "../styles/Resume.css";
+import PersonalInfoSection from "./personal-info/PersonalInfoSection";
+import EducationInfoSection from "./education/EducationInfoSection";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import ExperienceInfoSection from "./experience/ExperienceInfoSection";
 
-const Resume = ({ personalInfo, sections, layout }) => {
-  
+function Resume({ personalInfo, sections, layout }) {
   return (
-    <div className='resume-container'>
+    <div className="resume-container">
       <div className={`resume ${layout}`}>
         <PersonalInfoSection
           fullName={personalInfo.fullName}
@@ -20,7 +20,7 @@ const Resume = ({ personalInfo, sections, layout }) => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Resume
+export default Resume;

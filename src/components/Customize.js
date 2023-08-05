@@ -1,9 +1,9 @@
-import React from 'react'
-import ResumeColsEdit from './customize/ResumeColsEdit';
-import AccentColorEdit from './customize/AccentColorEdit';
-import FontEdit from './customize/FontEdit';
+import "../styles/customize/Customize.css";
+import AccentColorEdit from "./customize/AccentColorEdit";
+import FontEdit from "./customize/FontEdit";
+import ResumeColsEdit from "./customize/ResumeColsEdit";
 
-const Customize = ({ isShown, onColChange }) => {
+export default function Customize({ isShown, onColChange }) {
   return (
     <div
       className="customize"
@@ -21,5 +21,3 @@ const Customize = ({ isShown, onColChange }) => {
     </div>
   );
 }
-
-export default Customize

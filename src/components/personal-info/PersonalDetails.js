@@ -1,20 +1,20 @@
-import React from 'react'
-import Input from '../Input';
+import InputGroup from "../InputGroup";
+import "../../styles/PersonalDetails.css";
 
-const Personal = ({onChange, email, fullName, phoneNumber, address}) => {
+function PersonalDetails({ onChange, email, fullName, phoneNumber, address }) {
   return (
-    <form className='personal-details'>
+    <form className="personal-details">
       <h2>Personal Details</h2>
-      <Input
-        type='text'
+      <InputGroup
+        type="text"
         id="full-name"
-        labelText="Full Name"
+        labelText="Full name"
         placeholder="First and last name"
         value={fullName}
         onChange={onChange}
         data-key="fullName"
       />
-      <Input
+      <InputGroup
         type="email"
         id="email"
         labelText="Email"
@@ -24,7 +24,7 @@ const Personal = ({onChange, email, fullName, phoneNumber, address}) => {
         data-key="email"
         recommended
       />
-      <Input
+      <InputGroup
         type="tel"
         id="phone-number"
         labelText="Phone number"
@@ -34,7 +34,7 @@ const Personal = ({onChange, email, fullName, phoneNumber, address}) => {
         data-key="phoneNumber"
         recommended
       />
-      <Input
+      <InputGroup
         type="text"
         id="address"
         labelText="Address"
@@ -44,8 +44,7 @@ const Personal = ({onChange, email, fullName, phoneNumber, address}) => {
         data-key="address"
         recommended
       />
-     </form>
-  )
+    </form>
+  );
 }
-
-export default Personal
+export default PersonalDetails;

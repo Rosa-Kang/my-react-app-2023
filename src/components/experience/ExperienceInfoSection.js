@@ -1,8 +1,7 @@
-import React from 'react'
-import DisplaySection from '../DisplaySection';
-import ExperienceInfo from './ExperienceInfo';
+import ExperienceInfo from "./ExperienceInfo";
+import DisplaySection from "../DisplaySection";
 
-const ExperienceInfoSection = ({experiences}) => {
+function ExperienceInfoSection({ experiences }) {
   return (
     <div className="experience-info-section resume-section">
       <DisplaySection

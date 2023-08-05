@@ -1,20 +1,27 @@
-import React from 'react'
-import Input from '../Input';
+import InputGroup from "../InputGroup";
+import Buttons from "../Buttons";
 
-const ExperienceForm = (props) => {
+function ExperienceForm(props) {
+  const {
+    companyName,
+    positionTitle,
+    location,
+    description,
+    startDate,
+    endDate,
+    id,
+  } = props.form;
 
-    const { companyName, positionTitle, location, description, startDate, endDate, id } = props.form;
-
-    const { onChange, cancel, remove, save } = props;
+  const { onChange, cancel, save, remove } = props;
 
   return (
-      <form
-          className='experience-form section-form'
-          id={id}
-          data-array-name='experiences'
-          onSubmit={(e)=> e.preventDefault()}
-      >
-          <Input
+    <form
+      className="experience-form section-form"
+      id={id}
+      data-array-name="experiences"
+      onSubmit={(e) => e.preventDefault()}
+    >
+      <InputGroup
         type="text"
         id="company-name"
         labelText="Company Name"
@@ -23,7 +30,7 @@ const ExperienceForm = (props) => {
         onChange={onChange}
         data-key="companyName"
       />
-      <Input
+      <InputGroup
         type="text"
         id="position-title"
         labelText="Position Title"
@@ -33,7 +40,7 @@ const ExperienceForm = (props) => {
         data-key="positionTitle"
       />
       <div className="dates-group">
-        <Input
+        <InputGroup
           type="text"
           id="date"
           labelText="Start Date"
@@ -42,7 +49,7 @@ const ExperienceForm = (props) => {
           onChange={onChange}
           data-key="startDate"
         />
-        <Input
+        <InputGroup
           type="text"
           id="date"
           labelText="End Date"
@@ -52,7 +59,7 @@ const ExperienceForm = (props) => {
           data-key="endDate"
         />
       </div>
-      <Input
+      <InputGroup
         type="text"
         id="location"
         labelText="Location"
@@ -73,9 +80,8 @@ const ExperienceForm = (props) => {
         optional
       />
       <Buttons save={save} cancel={cancel} remove={remove} />
-          
     </form>
-  )
+  );
 }
 
-export default ExperienceForm
+export default ExperienceForm;

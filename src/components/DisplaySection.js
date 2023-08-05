@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-const DisplaySection =({ array, InfoComponent, title })=> {
+function DisplaySection({ array, InfoComponent, title }) {
   return (
     <React.Fragment>
       {
@@ -10,7 +10,7 @@ const DisplaySection =({ array, InfoComponent, title })=> {
         )
       }
 
-      {array?.map(
+      {array.map(
         (info) => !info.isHidden && <InfoComponent info={info} key={info.id} />
       )}
     </React.Fragment>

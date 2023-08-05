@@ -1,35 +1,32 @@
-import { useState } from 'react';
-import uniqid from 'uniqid';
-
-import './styles/App.css';
-import Sidebar from './components/Sidebar';
-import exampleData from './example-data';
-import TemplateLoader from './components/TemplateLoader';
-import PersonalDetails from './components/personal/PersonalDetails';
-import AddEducationSection from './components/education/AddEducationSection';
-import AddExperienceSection from './components/experience/AddExperienceSection';
-import Customize from './components/Customize';
-import Resume from './components/Resume';
-
+import { useState } from "react";
+import "./styles/App.css";
+import PersonalDetails from "./components/personal-info/PersonalDetails";
+import AddEducationSection from "./components/education/AddEducationSection";
+import AddExperienceSection from "./components/experience/AddExperienceSection";
+import Resume from "./components/Resume";
+import uniqid from "uniqid";
+import TemplateLoader from "./components/TemplateLoader";
+import exampleData from "./example-data";
+import Sidebar from "./components/Sidebar";
+import Customize from "./components/Customize";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState(exampleData.personalInfo);
   const [sections, setSections] = useState(exampleData.sections);
   const [sectionOpen, setSectionOpen] = useState(null);
   const [currentPage, setCurrentPage] = useState("content");
-  const [resumeLayout, setResumeLayout] = useState('top');
-// Store prevState to revert changes when user clicks "cancel"
+  const [resumeLayout, setResumeLayout] = useState("top");
+  // Store prevState to revert changes when user clicks "cancel"
   const [prevState, setPrevState] = useState(null);
-
-  const handlePersonalInfoChange=(e)=> {
+  function handlePersonalInfoChange(e) {
     const { key } = e.target.dataset;
     setPersonalInfo({ ...personalInfo, [key]: e.target.value });
   }
 
-  const handleSectionChange =(e) => {
+  function handleSectionChange(e) {
     const { key } = e.target.dataset;
     const inputValue = e.target.value;
-    const form = e.target.closest('.section-form');
+    const form = e.target.closest(".section-form");
     const { id } = form;
     const { arrayName } = form.dataset;
     const section = sections[arrayName];
@@ -40,17 +37,17 @@ function App() {
         return obj;
       }),
     });
-  } 
+  }
 
-  const createForm = (arrayName, object) => {
+  function createForm(arrayName, object) {
     setPrevState(null);
-    //Clone array to not push object to original
+    // Clone array to not push object to original
     const section = structuredClone(sections[arrayName]);
     section.push(object);
     setSections({ ...sections, [arrayName]: section });
   }
 
-  const createEducationForm = () => {
+  const createEducationForm = () =>
     createForm("educations", {
       degree: "",
       schoolName: "",
@@ -60,10 +57,9 @@ function App() {
       isCollapsed: false,
       isHidden: false,
       id: uniqid(),
-    })
-  }
+    });
 
-  const createExperienceForm = () => {
+  const createExperienceForm = () =>
     createForm("experiences", {
       companyName: "",
       positionTitle: "",
@@ -74,13 +70,11 @@ function App() {
       isCollapsed: false,
       isHidden: false,
       id: uniqid(),
-    })
-  }
+    });
 
   const setOpen = (sectionName) => setSectionOpen(sectionName);
-  
-  const removeForm = () => {
-    const form = e.target.closest('.section-form');
+  function removeForm(e) {
+    const form = e.target.closest(".section-form");
     const { arrayName } = form.dataset;
     const section = sections[arrayName];
     const { id } = form;
@@ -88,17 +82,17 @@ function App() {
     setSections({
       ...sections,
       [arrayName]: section.filter((item) => item.id !== id),
-    })
+    });
   }
 
-  const cancelForm = (e) => {
-    //if no prevState found remove form
-    if (prevState === null) {
+  function cancelForm(e) {
+    // if no prevState found remove form
+    if (prevState == null) {
       removeForm(e);
-      return
+      return;
     }
 
-    const sectionForm = e.target.closest('.section-form');
+    const sectionForm = e.target.closest(".section-form");
     const { id } = sectionForm;
     const { arrayName } = sectionForm.dataset;
     const section = sections[arrayName];
@@ -107,18 +101,18 @@ function App() {
       ...sections,
       [arrayName]: section.map((form) => {
         if (form.id === id) {
-          //Revert back to previous state
+          // Revert back to previous state
           form = prevState;
           form.isCollapsed = true;
         }
 
         return form;
-      })
-    })
+      }),
+    });
   }
 
-  const toggleValue = (e, key) => {
-    const sectionForm = e.target.closest('.section-form');
+  function toggleValue(e, key) {
+    const sectionForm = e.target.closest(".section-form");
     const { id } = sectionForm;
     const { arrayName } = sectionForm.dataset;
     const section = sections[arrayName];
@@ -129,34 +123,33 @@ function App() {
           setPrevState(Object.assign({}, form));
           form[key] = !form[key];
         }
+
         return form;
       }),
-    })
+    });
   }
 
-  const toggleCollapsed = (e) => toggleValue(e, 'isCollapsed');
-  const toggleHidden = (e) => toggleValue(e, 'isHidden');
+  const toggleCollapsed = (e) => toggleValue(e, "isCollapsed");
+  const toggleHidden = (e) => toggleValue(e, "isHidden");
 
   return (
-    <div className='app'>
+    <div className="app">
       <div className="edit-side">
-        <Sidebar onGoPage={setCurrentPage} page={currentPage} />
+        <Sidebar onGoToPage={setCurrentPage} page={currentPage} />
         <div className="form-container">
           <TemplateLoader
-            onTemplateLoad={()=> {
-            setPersonalInfo(exampleData.personalInfo);
-          setSections(exampleData.sections);
+            onTemplateLoad={() => {
+              setPersonalInfo(exampleData.personalInfo);
+              setSections(exampleData.sections);
             }}
-
             onClear={() => {
               setPersonalInfo({
-                fullName: '',
-                email: '',
-                phoneNumber: '',
-                address: '',
+                fullName: "",
+                email: "",
+                phoneNumber: "",
+                address: "",
               });
-
-              setSections({ educations: [], experience: [] });
+              setSections({ educations: [], experiences: [] });
               setPrevState(null);
             }}
           />
@@ -181,7 +174,7 @@ function App() {
                 onRemove={removeForm}
               />
               <AddExperienceSection
-                experiences={sections.experience}
+                experiences={sections.experiences}
                 isOpen={sectionOpen === "Experience"}
                 onChange={handleSectionChange}
                 createForm={createExperienceForm}
@@ -194,10 +187,10 @@ function App() {
             </>
           )}
 
-          <Customize 
-            isShown={currentPage === 'customize'}
+          <Customize
+            isShown={currentPage === "customize"}
             onColChange={setResumeLayout}
-           />
+          />
         </div>
       </div>
 
@@ -206,8 +199,8 @@ function App() {
         sections={sections}
         layout={resumeLayout}
       />
-     </div>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
