@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import uniqid from 'uniqid';
 import exampleData from './example-data';
 
 import Resume from './components/Resume';
@@ -14,11 +15,78 @@ const App = () => {
   const [personalInfo, setPersonalInfo] = useState(exampleData.personalInfo);
   const [sections, setSections] = useState(exampleData.sections);
   const [prevState, setPrevState] = useState(initialState);
+  const [sectionOpen, setSectionOpen] = useState(null);
+
 
   const handlePersonalInfoChange = (e) => {
     const { key } = e.target.value;
     setPersonalInfo({...personalInfo, [key]: e.target.value})
   }
+
+  const handleSectionChange = (e) => {
+    const { key } = e.target.dataset;
+    const inputValue = e.target.value;
+    const form = e.target.closest('.section-form');
+    const { id } = form;
+    const { arrayName } = form.dataset;
+    const section = sections[arrayName];
+    setSections({
+      ...sections, [arrayName]: section.map((obj) => {
+        if (obj.id === id) obj[key] = inputValue;
+        return obj;
+      }),
+    })
+  }
+
+  const createEducationForm = () => {
+    createForm('educations', {
+      degree: '',
+      schoolName: '',
+      location: '',
+      startDate: '',
+      endDate: '',
+      isCollapsed: false,
+      isHidden: false,
+      id:uniqid(),
+    })
+  }
+
+  const removeForm = (e) => {
+    form = e.target.closest('.section-form');
+    const { arrayName } = form.dataset;
+    const section = sections[arrayName];
+    const { id } = form;
+
+    setSections({
+      ...sections,
+      [arrayName]: section.filter((item) => item.id !== id),
+    })
+  }
+
+  const cancelForm = (e) => {
+    if (prevState == null) {
+      removeForm(e);
+      return;
+    }
+
+    const sectionForm = e.target.closest('.section-form');
+    const { id } = sectionForm;
+    const { arrayName } = sectionForm.dataset;
+    const section = sections[arrayName];
+
+    setSections({
+      ...sections, [arrayName]: section.map((form) => {
+        if (form.id === id) {
+          form = prevState;
+          form.isCollapsed = true;
+        }
+        
+        return form;
+    })})
+  }
+
+  const toggleCollapsed = (e) => toggleValue(e, 'isCollapsed');
+  const toggleHidden = (e) => toggleValue(e, 'isHidden');
 
   return (
     <div className='app'>
@@ -54,7 +122,15 @@ const App = () => {
                 phoneNumber={personalInfo.phoneNumber}
               />
               <AddEducationSection
-
+                educations={sections.educations}
+                isOpen={sectionOpen === 'Education'}
+                onChange={handleSectionChange}
+                createForm={createEducationForm}
+                setOpen={setOpen}
+                onCancel={cancelForm}
+                toggleCollapsed={toggleCollapsed}
+                onHide={toggleHidden}
+                onRemove={removeForm}
               />
               <AddExperienceSection />
             </>
