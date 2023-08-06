@@ -14,9 +14,9 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState('content');
   const [personalInfo, setPersonalInfo] = useState(exampleData.personalInfo);
   const [sections, setSections] = useState(exampleData.sections);
-  const [prevState, setPrevState] = useState(initialState);
+  const [prevState, setPrevState] = useState(null);
   const [sectionOpen, setSectionOpen] = useState(null);
-
+  const [resumeLayout, setResumeLayout] = useState('top');
 
   const handlePersonalInfoChange = (e) => {
     const { key } = e.target.value;
@@ -43,6 +43,22 @@ const App = () => {
       degree: '',
       schoolName: '',
       location: '',
+      startDate: '',
+      endDate: '',
+      isCollapsed: false,
+      isHidden: false,
+      id:uniqid(),
+    })
+  }
+
+  const setOpen = (sectionName) => setSectionOpen(sectionName);
+
+  const createExperienceForm = () => {
+    createForm('experience', {
+      companyName: '',
+      positionTitle: '',
+      location: '',
+      description: '',
       startDate: '',
       endDate: '',
       isCollapsed: false,
@@ -132,11 +148,24 @@ const App = () => {
                 onHide={toggleHidden}
                 onRemove={removeForm}
               />
-              <AddExperienceSection />
+              <AddExperienceSection
+                experiences={sections.experiences}
+                isOpen={sectionOpen === 'Experience'}
+                onChange={handleSectionChange}
+                createForm={{ createExperienceForm }}
+                setOpen={setOpen}
+                onCancel={cancelForm}
+                toggleCollapsed={toggleCollapsed}
+                onHidden={toggleHidden}
+                onRemove={removeForm}
+              />
             </>
           )}
 
-          <Customize />
+          <Customize
+            isShown={currentPage === 'customize'}
+            onColChange={setResumeLayout}
+          />
         </div>
 
       </div>
