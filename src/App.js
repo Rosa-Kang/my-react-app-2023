@@ -144,6 +144,14 @@ const App = () => {
             }}
 
             onClear={() => {
+              setPersonalInfo({
+                fullName: '',
+                email: '',
+                phoneNumber: '',
+                address: '',
+              });
+
+              setSections({ educations: [], experiences: [] });
               // setPersonalInfo({
               //   fullName: '',
               //   email: '',
