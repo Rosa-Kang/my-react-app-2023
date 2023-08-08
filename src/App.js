@@ -152,14 +152,8 @@ const App = () => {
               });
 
               setSections({ educations: [], experiences: [] });
-              // setPersonalInfo({
-              //   fullName: '',
-              //   email: '',
-              //   phoneNumber: '',
-              //   address: '',
-              // });
-              // setSections({ educations: [], experiences: [] });
-              // setPrevState(null);
+
+              setPrevState(null);
             }}
           />
 
