@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import uniqid from 'uniqid';
 import exampleData from './example-data';
+import './styles/App.css';
 
 import Resume from './components/Resume';
 import Sidebar from './components/Sidebar';
@@ -51,6 +52,14 @@ const App = () => {
     })
   }
 
+  function createForm(arrayName, object) {
+    setPrevState(null);
+    // Clone array to not push object to original
+    const section = structuredClone(sections[arrayName]);
+    section.push(object);
+    setSections({ ...sections, [arrayName]: section });
+  }
+
   const setOpen = (sectionName) => setSectionOpen(sectionName);
 
   const createExperienceForm = () => {
@@ -68,7 +77,7 @@ const App = () => {
   }
 
   const removeForm = (e) => {
-    form = e.target.closest('.section-form');
+    const form = e.target.closest('.section-form');
     const { arrayName } = form.dataset;
     const section = sections[arrayName];
     const { id } = form;
@@ -99,6 +108,24 @@ const App = () => {
         
         return form;
     })})
+  }
+
+  const toggleValue=(e, key)=> {
+    const sectionForm = e.target.closest(".section-form");
+    const { id } = sectionForm;
+    const { arrayName } = sectionForm.dataset;
+    const section = sections[arrayName];
+    setSections({
+      ...sections,
+      [arrayName]: section.map((form) => {
+        if (form.id === id) {
+          setPrevState(Object.assign({}, form));
+          form[key] = !form[key];
+        }
+
+        return form;
+      }),
+    });
   }
 
   const toggleCollapsed = (e) => toggleValue(e, 'isCollapsed');
